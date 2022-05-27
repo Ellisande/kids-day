@@ -1,0 +1,11 @@
+details::marker {
+    display: none;
+}
+
+details::-webkit-details-marker {
+    display: none;
+}
+
+summary {
+    list-style: none;;
+}
