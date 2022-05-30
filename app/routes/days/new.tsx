@@ -1,4 +1,5 @@
-import { ActionFunction, json, redirect } from "@remix-run/server-runtime";
+import type { ActionFunction } from "@remix-run/server-runtime";
+import { json, redirect } from "@remix-run/server-runtime";
 import { makeDomainFunction } from "remix-domains";
 import { Form, performMutation } from "remix-forms";
 import { z } from "zod";

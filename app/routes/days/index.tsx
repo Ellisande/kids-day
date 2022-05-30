@@ -1,11 +1,7 @@
 import { Day } from "@prisma/client";
 import { useLoaderData } from "@remix-run/react";
-import {
-  ActionFunction,
-  json,
-  LoaderFunction,
-  redirect,
-} from "@remix-run/server-runtime";
+import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
+import { json, redirect } from "@remix-run/server-runtime";
 import { addDays, startOfDay, startOfToday } from "date-fns";
 import { Navigate } from "react-router";
 import { makeDomainFunction } from "remix-domains";
@@ -20,7 +16,8 @@ import {
   getDayByDate,
   uncompleteActivity,
 } from "~/models/day.server";
-import { dayTypesEnum, DayWithMilestones } from "~/models/types";
+import type { DayWithMilestones } from "~/models/types";
+import { dayTypesEnum } from "~/models/types";
 
 type LoaderData = {
   today?: DayWithMilestones;

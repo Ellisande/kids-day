@@ -1,6 +1,6 @@
 import { addHours, addMinutes, startOfDay } from "date-fns";
 import { prisma } from "~/db.server";
-import {
+import type {
   ActivityTemplate,
   ActivityType,
   DayType,

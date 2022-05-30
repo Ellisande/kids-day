@@ -1,10 +1,6 @@
 import { useLoaderData } from "@remix-run/react";
-import {
-  ActionFunction,
-  json,
-  LoaderFunction,
-  redirect,
-} from "@remix-run/server-runtime";
+import type { ActionFunction, LoaderFunction } from "@remix-run/server-runtime";
+import { json, redirect } from "@remix-run/server-runtime";
 import invariant from "tiny-invariant";
 import DayDisplay from "~/components/DayDisplay";
 import {

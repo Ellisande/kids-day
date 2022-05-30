@@ -1,4 +1,7 @@
-import { DayWithMilestones, MilestoneWithActivities } from "~/models/types";
+import type {
+  DayWithMilestones,
+  MilestoneWithActivities,
+} from "~/models/types";
 import cx from "classnames";
 import { Activity, Milestone } from "@prisma/client";
 import { Checkmark } from "~/icons/checkmark";
