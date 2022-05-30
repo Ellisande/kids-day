@@ -15,7 +15,6 @@ model User {
   updatedAt DateTime @updatedAt
 
   password Password?
-  notes    Note[]
 }
 
 model Password {
@@ -25,23 +24,11 @@ model Password {
   userId String @unique
 }
 
-model Note {
-  id    String @id @default(cuid())
-  title String
-  body  String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId String
-}
-
 model Activity {
   id          String    @id @default(cuid())
   name        String
   type        String
-  milestone   Milestone @relation(fields: [milestoneId], references: [id])
+  milestone   Milestone @relation(fields: [milestoneId], references: [id], onDelete: Cascade)
   milestoneId String
   status      String
 }
@@ -52,7 +39,7 @@ model Milestone {
   type       String
   activities Activity[]
 
-  day      Day      @relation(fields: [dayId], references: [id])
+  day      Day      @relation(fields: [dayId], references: [id], onDelete: Cascade)
   dayId    String
   startBy  DateTime
   finishBy DateTime
@@ -64,6 +51,6 @@ model Day {
   name       String
   type       String
   milestones Milestone[]
-  activeFor  DateTime
+  activeFor  DateTime    @unique
   status     String
 }
