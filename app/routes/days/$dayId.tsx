@@ -1,24 +1,19 @@
-import { Activity, Milestone } from "@prisma/client";
-import { Form, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import {
   ActionFunction,
   json,
   LoaderFunction,
   redirect,
 } from "@remix-run/server-runtime";
-import cx from "classnames";
-import { format, isAfter } from "date-fns";
 import invariant from "tiny-invariant";
 import DayDisplay from "~/components/DayDisplay";
-import { Checkmark } from "~/icons/checkmark";
-import { Minus } from "~/icons/minus";
 import {
   changeMilestoneStatus,
   completeActivity,
   getDayById,
   uncompleteActivity,
 } from "~/models/day.server";
-import { DayWithMilestones, MilestoneWithActivities } from "~/models/types";
+import { DayWithMilestones } from "~/models/types";
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   invariant(params.dayId, "dayId not found");

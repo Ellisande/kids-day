@@ -1,7 +1,5 @@
 import { Link } from "@remix-run/react";
 
-import { useOptionalUser } from "~/utils";
-
 export default function Index() {
   return (
     <main className="flex h-full w-full items-center justify-center">
