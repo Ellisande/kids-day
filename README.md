@@ -101,7 +101,7 @@ Prior to your first deployment, you'll need to do a few things:
 - Add a `SESSION_SECRET` to your fly app secrets, to do this you can run the following commands:
 
   ```sh
-  fly secrets set SESSION_SECRET=$(openssl rand -hex 32) --app kids-day-f549
+  flyctl secrets set SESSION_SECRET=$(openssl rand -hex 32) --app kids-day-f549
   fly secrets set SESSION_SECRET=$(openssl rand -hex 32) --app kids-day-f549-staging
   ```
 
@@ -110,7 +110,7 @@ Prior to your first deployment, you'll need to do a few things:
 - Create a persistent volume for the sqlite database for both your staging and production environments. Run the following:
 
   ```sh
-  fly volumes create data --size 1 --app kids-day-f549
+  flyctl volumes create data --size 1 --app kids-day-f549 -r lhr
   fly volumes create data --size 1 --app kids-day-f549-staging
   ```
 
