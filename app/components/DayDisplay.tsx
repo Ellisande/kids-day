@@ -8,6 +8,7 @@ import { Checkmark } from "~/icons/checkmark";
 import { Minus } from "~/icons/minus";
 import { format, isAfter } from "date-fns";
 import { Form } from "@remix-run/react";
+import { formatInTimeZone } from "date-fns-tz";
 
 type DayDisplayProps = {
   day: DayWithMilestones;
@@ -65,12 +66,17 @@ function MilestoneDisplay(props: { milestone: MilestoneWithActivities }) {
     ? "bg-rose-300"
     : "bg-slate-300";
   const summaryStyle = cx(baseSummaryStyle, summaryColor);
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   return (
     <details className="m-2 w-1/2" open={isActive || inProgress}>
       <summary className={summaryStyle}>
         <div className="col-span-2">{milestone.name}</div>
-        <div className={startStyle}>{format(startBy, "h:mm a")}</div>
-        <div className={finishStyle}>{format(finishBy, "h:mm a")}</div>
+        <div className={startStyle}>
+          {formatInTimeZone(startBy, tz, "h:mm a")}
+        </div>
+        <div className={finishStyle}>
+          {formatInTimeZone(finishBy, tz, "h:mm a")}
+        </div>
       </summary>
       <div>
         {milestone.activities.map((a) => (

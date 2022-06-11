@@ -1,4 +1,5 @@
 import { addHours, addMinutes, startOfDay } from "date-fns";
+import { zonedTimeToUtc } from "date-fns-tz";
 import { prisma } from "~/db.server";
 import type {
   ActivityTemplate,
@@ -301,6 +302,7 @@ export async function createDay(
   const existingDay = await prisma.day.findUnique({
     where: { activeFor: startOfDay(activeFor) },
   });
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   if (existingDay) {
     await prisma.day.delete({
       where: { id: existingDay.id },
@@ -309,7 +311,7 @@ export async function createDay(
   return prisma.day.create({
     data: {
       ...template,
-      activeFor: startOfDay(activeFor),
+      activeFor: zonedTimeToUtc(startOfDay(activeFor), tz),
       status: "not_started",
     },
   });
